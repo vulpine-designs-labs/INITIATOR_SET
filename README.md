@@ -1,2 +1,0 @@
-# INITIATOR_SET.Scala
-
