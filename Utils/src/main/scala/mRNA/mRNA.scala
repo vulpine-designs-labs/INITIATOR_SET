@@ -4,8 +4,6 @@ package org.vulpine_designs.initiator_set.utils
  */
 package mRNA
 
-// Testing
-
 /**
  * An enum for all the base chemicals in RNA;
  *  - A = adenine
