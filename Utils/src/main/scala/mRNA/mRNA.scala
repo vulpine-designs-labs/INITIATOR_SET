@@ -4,6 +4,8 @@ package org.vulpine_designs.initiator_set.utils
  */
 package mRNA
 
+import scala.language.implicitConversions
+
 /**
  * An enum for all the base chemicals in RNA;
  *  - A = adenine
@@ -18,11 +20,20 @@ enum Bases {
 	case C extends Bases
 }
 
+object Bases {
+	extension (bases: List[Bases]) {
+		implicit def toString: String = {
+			bases.flatMap(b => b.toString).mkString
+		}
+	}
+}
+
 /**
  * A function to iterate over a string of given bases and return an array of the [[Base]] type,
  * this removes potential unknowns when working with lists of bases.
  *
  * @param bases: `String` a string of bases, all characters must be either 'A', 'U', 'G', or 'C'.
+ *
  * @return `Some(List[Bases])` if all the characters are acceptable, `None` if any are out of range.
  */
 def basesFromString(bases: String): Option[List[Bases]] = {
@@ -50,8 +61,8 @@ def basesFromString(bases: String): Option[List[Bases]] = {
  */
 def indexCodon(codon: List[Bases]): Option[Int] = {
 	if (codon.length != 3) return None
-	val res  = codon.zipWithIndex.map { (base, index) =>
-		val multiplier = 4 ^ index
+	val res: Int  = codon.reverse.zipWithIndex.map { (base, index) =>
+		val multiplier = Math.pow(4, index).toInt
 		base.ordinal * multiplier
 	}.sum
 	Some(res)
@@ -68,10 +79,10 @@ def indexCodon(codon: List[Bases]): Option[Int] = {
 def deIndexCodon(codonVal: Int): List[Bases] = {
 	val codonDouble = codonVal.toDouble
 	val res = 0 to 2 map { (index: Int) =>
-		val divider = (4 ^ index).toDouble
+		val divider = Math.pow(4, index)
 		Bases fromOrdinal (codonDouble / divider).toInt % 4
 	}
-	res.toList
+	res.toList.reverse
 }
 
 /**
@@ -83,10 +94,10 @@ def deIndexCodon(codonVal: Int): List[Bases] = {
  *
  * @return `Some(List[Int])` if all the codons were successfully indexed.
  */
-def makeCodonIndexes(baseList: List[Bases]): Option[List[Int]] = {
+def indexCodons(baseList: List[Bases]): Option[List[Int]] = {
 	val usableLength = baseList.length - 3
 	val res = 0 to usableLength map { index =>
-		val codon = baseList slice (index, index + 3)
+		val codon = baseList slice(index, index + 3)
 		indexCodon(codon)
 	}
 	val filteredList = for (
@@ -104,19 +115,20 @@ def makeCodonIndexes(baseList: List[Bases]): Option[List[Int]] = {
  *
  * @param codonIndexes: `List[Int]` a list of indexes representing codons.
  *
- * @return `codonIndexes: List[Bases]` a list of bases expanded from the list of codons.
+ * @return `List[Bases]` a list of bases expanded from the list of codons.
  */
-def deIndexCodonIndexes(codonIndexes: List[Int]): List[Bases] = {
+def deIndexCodons(codonIndexes: List[Int]): List[Bases] = {
 	val usableLength = codonIndexes.length - 1
 	val remaining = usableLength % 3
 	val res = 0 to usableLength by 3 map { iter =>
-		deIndexCodon(iter)
+		deIndexCodon(codonIndexes(iter))
 	}
 	val firstIndexes = res.toList.flatten
 	if (remaining != 0) {
 		val lastCodon = codonIndexes(usableLength)
-		return firstIndexes ++ deIndexCodon(lastCodon)
-			.slice(usableLength - remaining, codonIndexes.length)
+		val lastBases = deIndexCodon(lastCodon)
+		return firstIndexes ++ lastBases
+			.slice(lastBases.length - remaining, lastBases.length)
 	}
 	firstIndexes
 }
@@ -125,9 +137,28 @@ def deIndexCodonIndexes(codonIndexes: List[Int]): List[Bases] = {
  * A class for storing all data to do with an mRNA strand, this is primarily a list of [[Bases]],
  * and the corresponding index for all the groups of 3 (codons) within those bases.
  *
- * @param id: `String` an identifying string to give the mRNA strand.
- * @param nucleotide: `List[Bases]` a list of bases that make up the mRNA strand
+ * @param Id: `String` an identifying string to give the mRNA strand.
+ *
+ * @param Codons: `List[Int]` a list of codons that make up the mRNA strand.
  */
-class mRNA(val id: String, val nucleotide: List[Bases]) {
-
+class mRNA(
+			val Id: String,
+			val Codons: List[Int],
+			val BaseWeights: List[Double] = List(),
+			val AdjustedWeights: List[Double] = List()
+) {
+	val Nucleotide: List[Bases] = deIndexCodons(Codons)
+}
+// Companion object contains methods
+object mRNA {
+	implicit def toString(mrna: mRNA): String = {
+		val bases: String = mrna.Nucleotide
+		val baseWeights = mrna.BaseWeights.flatMap(w => s"$w, ")
+			.mkString
+			.dropRight(2)
+		val adjWeights = mrna.AdjustedWeights.flatMap(w => s"$w, ")
+			.mkString
+			.dropRight(2)
+		s"$bases\n[$baseWeights]\n[$adjWeights]"
+	}
 }
