@@ -3,6 +3,12 @@ package protein
 
 import scala.language.implicitConversions
 
+/**
+ * An enum representing all the types of amino acids which in a list make up a
+ * protein. This includes [[AminoAcid.Gap]] for any gaps in the protein chain,
+ * and [[AminoAcid.Stop]] + [[AminoAcid.Start]] indicating stops and starts
+ * of a protein chain.
+ */
 enum AminoAcid {
 	override def toString: String = {
 		val value = AminoAcid.fromOrdinal(ordinal)
@@ -44,7 +50,18 @@ enum AminoAcid {
 	case Gap extends AminoAcid
 }
 
+/**
+ * Associated object for [[AminoAcid]] containing associated functions and overloaded
+ * operators and conversions.
+ */
 object AminoAcid {
+	/**
+	 * Takes a string, loops through each character and returns the equivalent amino acid
+	 * in a list, returning a `None` if there is no match.
+	 *
+	 * @param string `String`: the string to be converted.
+	 * @return `Option[List[AminoAcid]`: the result of the attempted conversion.
+	 */
 	def listFromString(string: String): Option[List[AminoAcid]] = {
 		val res = for ( char <- string ) yield {
 			try {

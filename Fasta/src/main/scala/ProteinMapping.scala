@@ -2,6 +2,9 @@ package org.vulpine_designs.initiator_set.fasta
 
 import org.vulpine_designs.initiator_set.utils.protein.AminoAcid
 
+/**
+ *
+ */
 sealed abstract class AltProteinBases
 
 case class Nothing() extends AltProteinBases

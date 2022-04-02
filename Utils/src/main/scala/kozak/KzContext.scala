@@ -8,11 +8,11 @@ import scala.language.implicitConversions
  * namely from checking a list of [[mRNA.MRNABases]] against [[KzConsensus]], I.E.
  * via [[KzConsensus.similarity]].
  *
- * @param ContextStart   : `Int` the start of the [[mRNA.MRNABases]] sequence that has been checked.
- * @param ContextEnd     : `Int` the end of the [[mRNA.MRNABases]] sequence that has been checked.
- * @param InitiatorStart : `Int` the index in the [[mRNA.MRNABases]] sequence that has been checked.
- * @param Strength       : `Double` the resultant calculated strength (I.E. through [[KzConsensus.Sequence]].
- * @param Consensus      : [[KzConsensus]] the consensus used to calculate the values.
+ * @param ContextStart: `Int` the start of the [[mRNA.MRNABases]] sequence that has been checked.
+ * @param ContextEnd: `Int` the end of the [[mRNA.MRNABases]] sequence that has been checked.
+ * @param InitiatorStart: `Int` the index in the [[mRNA.MRNABases]] sequence that has been checked.
+ * @param Strength: `Double` the resultant calculated strength (I.E. through [[KzConsensus.Sequence]].
+ * @param Consensus: [[KzConsensus]] the consensus used to calculate the values.
  */
 class KzContext(
 		val ContextStart: Int,

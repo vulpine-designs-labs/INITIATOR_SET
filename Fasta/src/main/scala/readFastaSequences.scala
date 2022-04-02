@@ -11,6 +11,13 @@ import org.vulpine_designs.initiator_set.utils.fasta.{
 import org.vulpine_designs.initiator_set.utils.mRNA.MRNABases
 import org.vulpine_designs.initiator_set.utils.protein.AminoAcid
 
+/**
+ * Takes a string read from a fasta file, breaks and parses each sequence into a list of
+ * [[Fasta]] sequences. `Option[Fasta]` will be `None` if the format is invalid.
+ *
+ * @param sequenceString `String`: the fasta string
+ * @return `List[Option[Fasta]]`: the list of attempted tokenized sequences
+ */
 def readFastaSequences(sequenceString: String): List[Option[Fasta]] = {
 	val sequences = sequenceString.split('>').toList
 	for ( seq <- sequences ) yield

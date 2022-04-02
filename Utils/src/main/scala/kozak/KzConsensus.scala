@@ -146,7 +146,7 @@ class KzConsensus(
 }
 
 /**
- * Assosciated object for [[KzConsensus]], contains implicit type casts.
+ * Associated object for [[KzConsensus]], contains implicit type casts.
  */
 object KzConsensus {
 	implicit def toString(kzConsensus: KzConsensus): String = {

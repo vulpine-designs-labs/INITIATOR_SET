@@ -13,6 +13,19 @@ import DNA.DNABases
  *  - C = cytosine
  */
 enum MRNABases {
+	/**
+	 * Converts an [[MRNABases]] to a [[DNABases]] based on a rule such that;
+	 *
+	 * MRNABases.U -> DNABases.A
+	 * MRNABases.G -> DNABases.C
+	 * MRNABases.C -> DNABases.G
+	 * MRNABases.A -> DNABases.T
+	 *
+	 * This is a rule purely reflective of what happens to DNA to MRNA bases inside
+	 * a cell.
+	 *
+	 * @return [[DNABases]]: the result of the conversion.
+	 */
 	def toDNA: DNABases = {
 		val mrnaBase = MRNABases.fromOrdinal(ordinal)
 		mrnaBase match {
@@ -67,7 +80,7 @@ object MRNABases {
  * so a number between 0 and 63.
  *
  * @param codon: `List[Bases]` an array of 3 bases to form a codon.
- * @return `Some(Int)`` with the codons value if the param codon` is 3 in length, else `None`.
+ * @return `Some(Int)` with the codons value if the param codon is 3 in length, else `None`.
  */
 def indexCodon(codon: List[MRNABases]): Option[Int] = {
 	if (codon.length != 3) return None
@@ -146,6 +159,10 @@ def deIndexCodons(codonIndexes: List[Int]): List[MRNABases] = {
  *
  * @param Id: `String` an identifying string to give the mRNA strand.
  * @param Codons: `List[Int]` a list of codons that make up the mRNA strand.
+ * @param BaseWeights: `Map[Int, Double]` the assigned 'weight' of all the possible codons.
+ * @param AdjustedWeights: `Map[Int, Double]` the adjusted weights of all the possible codons.
+ * @param KzContexts: `List[KzContext]` data on any kozak calculations done on the sequence (calculation determining a
+ * "start" point).
  */
 class mRNA(
 			val Id: String,
