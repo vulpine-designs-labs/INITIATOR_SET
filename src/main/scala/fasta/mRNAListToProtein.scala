@@ -1,4 +1,4 @@
-package org.vulpine_designs.initiator_set
+package org.vulpinedesigns.initiator_set
 package fasta
 
 import utils.protein.AminoAcid
