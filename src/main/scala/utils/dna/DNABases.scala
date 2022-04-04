@@ -5,6 +5,7 @@ import utils.protein.AminoAcid
 import utils.mrna.MRNABases
 import scala.language.implicitConversions
 
+
 /**
  * An enum for all the base chemicals in RNA;
  *  - A = adenine

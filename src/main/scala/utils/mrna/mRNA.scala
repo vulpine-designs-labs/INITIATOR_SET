@@ -5,6 +5,7 @@ import utils.kozak.KzContext
 import utils.dna.DNABases
 import scala.language.implicitConversions
 
+
 /**
  * An enum for all the base chemicals in RNA;
  *  - A = adenine

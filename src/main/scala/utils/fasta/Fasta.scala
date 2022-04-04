@@ -5,6 +5,7 @@ import utils.protein.AminoAcid
 import utils.mrna.MRNABases
 import utils.dna.DNABases
 
+
 /**
  * A base class for a tokenized Fasta file sequence. 
  */

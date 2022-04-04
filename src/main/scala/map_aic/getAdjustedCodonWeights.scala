@@ -7,6 +7,7 @@ import utils.mrna.{
 	deIndexCodon
 }
 
+
 /**
  * A function that will take a map of integers and doubles, and will normalize all the
  * doubles to be between 0 and 1 (where 1 is the largest value in the map).

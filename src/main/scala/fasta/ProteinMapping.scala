@@ -3,6 +3,7 @@ package fasta
 
 import utils.protein.AminoAcid
 
+
 /**
  * A base class for if a different list of amino acids is required if a certain mRNA codon is
  * at the start or end of a [[utils.mrna.MRNABases MRNABases]] sequence.

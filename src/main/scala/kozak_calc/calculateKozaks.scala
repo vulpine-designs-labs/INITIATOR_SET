@@ -10,6 +10,7 @@ import utils.mrna.{
 	mRNA
 }
 
+
 /**
  * Takes a [[utils.mrna.mRNA mRNA]] and list of [[utils.kozak.KzConsensus KzConsensus]], it will then loop over
  * [[utils.mrna.mRNA.Codons mRNA.Codons]], finding a [[utils.kozak.KzConsensus KzConsensus]] from the `kozaks`

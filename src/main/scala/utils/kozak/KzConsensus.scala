@@ -7,6 +7,7 @@ import utils.mrna.{
 }
 import scala.language.implicitConversions
 
+
 /**
  * This stores the list or sequence of [[utils.kozak.KzNucleotide KzNucleotide]], along with a few helper
  * methods and data, allowing for a list of [[utils.mrna.MRNABases MRNABases]] to be compared against it to

@@ -3,6 +3,7 @@ package utils.kozak
 
 import scala.language.implicitConversions
 
+
 /**
  * A helper class containing calculated data (namely [[utils.kozak.KzContext.Strength KzContext.Strength]])
  * namely from checking a list of [[utils.mrna.MRNABases MRNABases]] against [[utils.kozak.KzConsensus KzConsensus]], I.E.

@@ -3,6 +3,7 @@ package utils.protein
 
 import scala.language.implicitConversions
 
+
 /**
  * An enum representing all the types of amino acids which in a list make up a
  * protein. This includes [[utils.protein.AminoAcid.Gap AminoAcid.Gap]] for any gaps in the protein chain,

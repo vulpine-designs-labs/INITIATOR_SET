@@ -7,6 +7,7 @@ import utils.mrna.{
 	indexCodon
 }
 
+
 /**
  * The default stop codons used by the module.
  *

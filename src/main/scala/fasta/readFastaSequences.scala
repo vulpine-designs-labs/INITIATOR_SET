@@ -12,6 +12,7 @@ import utils.fasta.{
 	FastaSequence
 }
 
+
 /**
  * Takes a string read from a fasta file, breaks and parses each sequence into a list of
  * [[utils.fasta.Fasta Fasta]] sequences. `Option[Fasta]` will be `None` if the format is invalid.
