@@ -10,12 +10,13 @@ determine if the desired sequence has been found.</p>
 methods and data, allowing for a list of <a href="mrna/MRNABases.html">MRNABases</a> to be compared against it to
 determine if the desired sequence has been found.</p>
 <p>==Example==
-You can compare a list of <a href="mrna/MRNABases.html">MRNABases</a> against the consensus by using <a href="kozak/KzConsensus.html#similarity-12e">KzConsensus.similarity</a>
-this returns a double denoting the &quot;strength&quot; of whether or not the sequence is
-the desired one;</p>
+You can compare a list of <a href="mrna/MRNABases.html">MRNABases</a> against the consensus by using
+<a href="kozak/KzConsensus.html#similarity-12e">KzConsensus.similarity</a> this returns a double denoting the
+&quot;strength&quot; of whether or not the sequence is the desired one;</p>
 <pre><code>   val similarityScore = consensus.similarity(listOfBases)
 </code></pre>
-</div><dl class="attributes"><dt>Value Params</dt><dd><dl class="attributes"><dt>CodonStart</dt><dd><p>The stating position of the 3 element long codon within <a href="kozak/KzConsensus.html#Sequence-0">KzConsensus.Sequence</a>.</p>
+</div><dl class="attributes"><dt>Value Params</dt><dd><dl class="attributes"><dt>CodonStart</dt><dd><p>The stating position of the 3 element long codon within
+<a href="kozak/KzConsensus.html#Sequence-0">KzConsensus.Sequence</a>.</p>
 </dd><dt>Sequence</dt><dd><p>A list of <a href="kozak/KzNucleotide.html">KzNucleotide</a> holding information about each
 position within the sequence.</p>
 </dd></dl></dd><dt>Companion</dt><dd><a href="kozak/KzConsensus$.html">object</a></dd></dl></div></div></div></div></div><div class="documentableElement"><a href="kozak/KzConsensus$.html" class="documentableAnchor"></a><div><span class="annotations monospace"></span></div><div class="header monospace"><span class="modifiers"><span class="other-modifiers"> </span><span class="kind">object </span></span><a href="kozak/KzConsensus$.html" class="documentableName ">KzConsensus</a><span class="signature"></span></div><div class="docs"><span class="modifiers"></span><div><div class="originInfo"></div><div class="memberDocumentation"><div class="documentableBrief doc"><p>Associated object for <a href="kozak/KzConsensus.html">KzConsensus</a>, contains implicit type casts.</p>

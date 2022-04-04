@@ -14,11 +14,11 @@ import ProteinMap.{
 
 
 /**
- * Takes a list of [[MRNABases]] and converts it to a list of [[AminoAcid]] (a protein)
- * as per `ProteinMappings` parameter, this can be overridden.
+ * Takes a list of [[utils.mrna.MRNABases MRNABases]] and converts it to a list of [[utils.protein.AminoAcid AminoAcid]]
+ * (a protein) as per `ProteinMappings` parameter, this can be overridden.
  *
  * @param mrnaBases The list of mRNA bases to be converted.
- * @param mapping The [[ProteinMapping]] object defining what mRNA bases convert to
+ * @param mapping The [[fasta.ProteinMapping ProteinMapping]] object defining what mRNA bases convert to
  *                what AminoAcids.
  * @return The converted amino acids, returns `None` if the bases cannot be converted to 
  *         their codons, or a related mapping cannot be found.

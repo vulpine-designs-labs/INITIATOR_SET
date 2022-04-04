@@ -7,9 +7,9 @@ import utils.mrna.{
 }
 
 /**
- * This will take a string from a file containing codons (groups of 3 [[MRNABases]])
+ * This will take a string from a file containing codons (groups of 3 [[utils.mrna.MRNABases MRNABases]])
  * and the weight of each one on each line and deserializes them, including using
- * [[indexCodon]] to deserialize the codon.
+ * [[utils.mrna.indexCodon() indexCodon]] to deserialize the codon.
  *
  * Will return `None` if a codon or weight is malformed.
  *

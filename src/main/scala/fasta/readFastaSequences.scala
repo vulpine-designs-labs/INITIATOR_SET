@@ -14,7 +14,7 @@ import utils.fasta.{
 
 /**
  * Takes a string read from a fasta file, breaks and parses each sequence into a list of
- * [[Fasta]] sequences. `Option[Fasta]` will be `None` if the format is invalid.
+ * [[utils.fasta.Fasta Fasta]] sequences. `Option[Fasta]` will be `None` if the format is invalid.
  *
  * @param sequenceString The fasta string.
  * @return The list of attempted tokenized sequences.

@@ -11,10 +11,11 @@ import utils.mrna.{
 }
 
 /**
- * Takes a [[mRNA]] and list of [[KzConsensus]], it will then loop over [[mRNA.Codons]],
- * finding a [[KzConsensus]] from the `kozaks` param with a matching [[KzConsensus.indexedCodon]], it will
- * then get the similarity score between the mrna and the selected [[KzConsensus]]. Storing & returning
- * the results and data into a list of [[KzContext]].
+ * Takes a [[utils.mrna.mRNA mRNA]] and list of [[utils.kozak.KzConsensus KzConsensus]], it will then loop over
+ * [[utils.mrna.mRNA.Codons mRNA.Codons]], finding a [[utils.kozak.KzConsensus KzConsensus]] from the `kozaks`
+ * param with a matching [[utils.kozak.KzConsensus.indexedCodon KzConsensus.indexedCodon]], it will then get the
+ * similarity score between the mrna and the selected [[utils.kozak.KzConsensus KzConsensus]]. Storing & returning
+ * the results and data into a list of [[utils.kozak.KzContext KzContext]].
  *
  * @param mrna The mrna to be checked.
  * @param kozaks A list of Kozak Consensus Sequences to get the similarity score.

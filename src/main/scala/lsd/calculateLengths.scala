@@ -10,9 +10,9 @@ import utils.mrna.{
 /**
  * The default stop codons used by the module.
  *
- * [[MRNABases.U]], [[MRNABases.A]], [[MRNABases.G]]
- * [[MRNABases.U]], [[MRNABases.U]], [[MRNABases.A]]
- * [[MRNABases.U]], [[MRNABases.G]], [[MRNABases.A]]
+ * [[utils.mrna.MRNABases.U MRNABases.U]], [[utils.mrna.MRNABases.A MRNABases.A]], [[utils.mrna.MRNABases.G MRNABases.G]]
+ * [[utils.mrna.MRNABases.U MRNABases.U]], [[utils.mrna.MRNABases.U MRNABases.U]], [[utils.mrna.MRNABases.A MRNABases.A]]
+ * [[utils.mrna.MRNABases.U MRNABases.U]], [[utils.mrna.MRNABases.G MRNABases.G]], [[utils.mrna.MRNABases.A MRNABases.A]]
  */
 val DefaultStopCodons: List[Int] = List(
 	List(MRNABases.U, MRNABases.A, MRNABases.G),
@@ -21,10 +21,10 @@ val DefaultStopCodons: List[Int] = List(
 ).map(codon => indexCodon(codon).getOrElse(0))
 
 /**
- * Loops over [[mRNA.Codons]], calculating the sequence lengths (via [[sequenceLengths]]) at each
+ * Loops over [[utils.mrna.mRNA.Codons mRNA.Codons]], calculating the sequence lengths (via [[sequenceLengths]]) at each
  * index in the sequence.
  *
- * @param mrna The [[mRNA]] with the sequence.
+ * @param mrna The [[utils.mrna.mRNA mRNA]] with the sequence.
  * @return The calculated lengths.
  */
 def calculateLengths(mrna: mRNA): List[Int] = {
@@ -34,8 +34,8 @@ def calculateLengths(mrna: mRNA): List[Int] = {
 }
 
 /**
- * Takes an [[mRNA]] and iterates over [[mRNA.Codons]] from the posistion indicated by
- * `start`, returning the first index where a value is within [[stopCodons]], thus getting
+ * Takes an [[utils.mrna.mRNA mRNA]] and iterates over [[utils.mrna.mRNA.Codons mRNA.Codons]] from the position indicated by
+ * `start`, returning the first index where a value is within `stopCodons`, thus getting
  * the apparent length of the sequence.
  *
  * @param mrna The mrna with the sequence to be checked.
@@ -50,7 +50,7 @@ def sequenceLengths(mrna: mRNA, start: Int, stopCodons: List[Int] = DefaultStopC
 }
 
 /**
- * Determines whether from a list of sequence lengths (e.g. calculated by [[calculateLengths]])
+ * Determines whether from a list of sequence lengths (e.g. calculated by [[lsd.calculateLengths() calculateLengths]])
  * 2 sequences with starting positions indicated by `one: Int` and `two: Two` overlap.
  *
  * @param sequence The list of sequence lengths.

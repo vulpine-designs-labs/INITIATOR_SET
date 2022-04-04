@@ -13,21 +13,21 @@ sealed abstract class FastaSequence
 /**
  * A case class representing a tokenized mRNA fasta file sequence. 
  *
- * @param seq The list of [[MRNABases]].
+ * @param seq The list of [[utils.mrna.MRNABases MRNABases]].
  */
 case class mRNASeq(seq: List[MRNABases]) extends FastaSequence
 
 /**
  * A case class representing a tokenized DNA fasta file sequence. 
  *
- * @param seq The list of [[DNABases]].
+ * @param seq The list of [[utils.dna.DNABases DNABases]].
  */
 case class DNASeq(seq: List[DNABases]) extends  FastaSequence
 
 /**
  * A case class representing a tokenized amino acid (protein) fasta file sequence.
  *
- * @param seq The list of [[AminoAcid]] (a protein).
+ * @param seq The list of [[utils.protein.AminoAcid AminoAcid]] (a protein).
  */
 case class ProteinSeq(seq: List[AminoAcid]) extends FastaSequence
 

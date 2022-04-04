@@ -14,7 +14,7 @@ import scala.language.implicitConversions
  */
 enum MRNABases {
 	/**
-	 * Converts an [[MRNABases]] to a [[DNABases]] based on a rule such that;
+	 * Converts an [[utils.mrna.MRNABases MRNABases]] to a [[utils.dna.DNABases DNABases]] based on a rule such that;
 	 *
 	 * MRNABases.U -> DNABases.A
 	 * MRNABases.G -> DNABases.C
@@ -43,11 +43,11 @@ enum MRNABases {
 }
 
 /**
- * Associated object for [[MRNABases]], containing extension methods for `List[Bases]`.
+ * Associated object for [[utils.mrna.MRNABases MRNABases]], containing extension methods for `List[Bases]`.
  */
 object MRNABases {
 	/**
-	 * A function to iterate over a string of given bases and return an array of the [[MRNABases]] type,
+	 * A function to iterate over a string of given bases and return an array of the [[utils.mrna.MRNABases MRNABases]] type,
 	 * this removes potential unknowns when working with lists of bases.
 	 *
 	 * @param bases A string of bases, all characters must be either 'A', 'U', 'G', or 'C'.
@@ -75,7 +75,7 @@ object MRNABases {
 }
 
 /**
- * Converts an array of 3 [[MRNABases]] (a codon) into a number classifying it.
+ * Converts an array of 3 [[utils.mrna.MRNABases MRNABases]] (a codon) into a number classifying it.
  * Since there are 4 bases and 3 bases per codon, that works out at 64 possible codons,
  * so a number between 0 and 63.
  *
@@ -92,7 +92,7 @@ def indexCodon(codon: List[MRNABases]): Option[Int] = {
 }
 
 /**
- * Converts a value between 0-63 into the corresponding array of 3 [[MRNABases]] (a codon).
+ * Converts a value between 0-63 into the corresponding array of 3 [[utils.mrna.MRNABases MRNABases]] (a codon).
  * Resistant to negative and out of range numbers.
  *
  * @param codonVal A value (0-63) representing one of 64 different possible codons.
@@ -108,11 +108,11 @@ def deIndexCodon(codonVal: Int): List[MRNABases] = {
 }
 
 /**
- * Takes a list of [[MRNABases]], breaks it at each group of three (3 bases being a codon),
+ * Takes a list of [[utils.mrna.MRNABases MRNABases]], breaks it at each group of three (3 bases being a codon),
  * then generates the index of each codon (a number corresponding to it) into a list.
  * Returns a blank list if `baseList` length is less than 3.
  *
- * @param baseList A list of [[MRNABases]] containing codons to be extracted and indexed.
+ * @param baseList A list of [[utils.mrna.MRNABases MRNABases]] containing codons to be extracted and indexed.
  * @return If all the codons were successfully indexed.
  */
 def indexCodons(baseList: List[MRNABases]): Option[List[Int]] = {
@@ -131,7 +131,7 @@ def indexCodons(baseList: List[MRNABases]): Option[List[Int]] = {
 }
 
 /**
- * Takes a list of numbers representing different combinations of 3 [[MRNABases]] (codons) and
+ * Takes a list of numbers representing different combinations of 3 [[utils.mrna.MRNABases MRNABases]] (codons) and
  * converts them into the list of raw bases.
  *
  * @param codonIndexes A list of indexes representing codons.
@@ -154,7 +154,7 @@ def deIndexCodons(codonIndexes: List[Int]): List[MRNABases] = {
 }
 
 /**
- * A class for storing all data to do with an mRNA strand, this is primarily a list of [[MRNABases]],
+ * A class for storing all data to do with an mRNA strand, this is primarily a list of [[utils.mrna.MRNABases MRNABases]],
  * and the corresponding index for all the groups of 3 (codons) within those bases.
  *
  * @param Id An identifying string to give the mRNA strand.
@@ -178,7 +178,7 @@ class mRNA(
 }
 
 /**
- * Associated object for [[mRNA]], containing implicit type casts.
+ * Associated object for [[utils.mrna.mRNA mRNA]], containing implicit type casts.
  */
 object mRNA {
 	implicit def toString(mrna: mRNA): String = {

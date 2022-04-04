@@ -5,17 +5,19 @@ import utils.kozak.KzContext
 import utils.mrna.mRNA
 
 /**
- * Calculates the averages for each [[mRNA.AdjustedWeights]] and [[KzContext.Strength]] in
- * [[mRNA.KzContexts]], and can also apply a list of penalties with on each item, passing in
- * the [[KzContext.ContextStart]] for each item.
+ * Calculates the averages for each [[utils.mrna.mRNA.AdjustedWeights mRNA.AdjustedWeights]] and
+ * [[utils.kozak.KzContext.Strength KzContext.Strength]] in [[utils.mrna.mRNA.KzContexts mRNA.KzContexts]],
+ * and can also apply a  list of penalties with on each item, passing in the
+ * [[utils.kozak.KzContext.ContextStart KzContext.ContextStart]] for each item.
  *
- * A result of 0 means the [[KzContext]] has a been compared such that it matches and nothing
+ * A result of 0 means the [[utils.kozak.KzContext KzContext]] has a been compared such that it matches and nothing
  * has been returned from the penalties.
  *
- * @param mrna The mRNA containing the weights [[mRNA.BaseWeights]] to be adjusted.
- * @param penalties A list of functions that can apply a penalty based on [[KzContext.ContextStart]].
+ * @param mrna The mRNA containing the weights [[utils.mrna.mRNA.BaseWeights mRNA.BaseWeights]] to be adjusted.
+ * @param penalties A list of functions that can apply a penalty based on
+ *                  [[utils.kozak.KzContext.ContextStart KzContext.ContextStart]].
  * @return The "leakiness" score for each position, returns `None` if there is fewer
- *         [[mRNA.AdjustedWeights]] than [[mRNA.KzContexts]].
+ *         [[utils.mrna.mRNA.AdjustedWeights mRNA.AdjustedWeights]] than [[utils.mrna.mRNA.KzContexts mRNA.KzContexts]].
  */
 def calculateLeakyChronological(mrna: mRNA, penalties: List[Int => Double]): Option[List[Double]] = {
 	val kzContexts = mrna.KzContexts

@@ -81,7 +81,7 @@ class ProteinMap(
 object ProteinMap {
 	extension (list: List[ProteinMap]) {
 		/**
-		 * Takes the list of `ProteinMap` returns a list of [[AminoAcid]] getting the start alt
+		 * Takes the list of `ProteinMap` returns a list of [[utils.protein.AminoAcid AminoAcid]] getting the start alt
 		 * amino acids for the start and appending the defaults for the rest,
 		 * getting the start amino acid.
 		 *
@@ -95,7 +95,7 @@ object ProteinMap {
 		}
 		
 		/**
-		 * Takes the list of `ProteinMap` returns a list of [[AminoAcid]] getting the end
+		 * Takes the list of `ProteinMap` returns a list of [[utils.protein.AminoAcid AminoAcid]] getting the end
 		 * alt amino acids for the start and appending the defaults for the rest,
 		 * getting the end amino acid.
 		 *
@@ -109,7 +109,7 @@ object ProteinMap {
 		}
 		
 		/**
-		 * Takes the list of `ProteinMaps` and returns all the [[AminoAcid]]
+		 * Takes the list of `ProteinMaps` and returns all the [[utils.protein.AminoAcid AminoAcid]]
 		 * in each appended into a list.
 		 *
 		 * @return The amino acid list (protein).
@@ -124,11 +124,11 @@ object ProteinMap {
  * from 0-63 representing a group of 3 [[utils.mrna.MRNABases MRNABases]]).
  *
  * @param mappings A list of map objects associating each codon values with a list of
- *                 [[AminoAcid]] (a protein).
+ *                 [[utils.protein.AminoAcid AminoAcid]] (a protein).
  */
 class ProteinMappings(mappings: List[ProteinMap] = List()) {
 	/**
-	 * A list of map objects associating each codon values with a list of [[AminoAcid]] (a protein).
+	 * A list of map objects associating each codon values with a list of [[utils.protein.AminoAcid AminoAcid]] (a protein).
 	 * Defaults to [[DefaultMappings]].
 	 */
 	val Mappings: List[ProteinMap] =
@@ -163,7 +163,7 @@ class ProteinMappings(mappings: List[ProteinMap] = List()) {
 }
 
 /**
- * The default mappings for converting between [[utils.mrna.MRNABases MRNABases]] and [[AminoAcid]].
+ * The default mappings for converting between [[utils.mrna.MRNABases MRNABases]] and [[utils.protein.AminoAcid AminoAcid]].
  */
 val DefaultMappings: List[ProteinMap] = List(
 	ProteinMap(List(45, 47, 44, 46), List(AminoAcid.A)),

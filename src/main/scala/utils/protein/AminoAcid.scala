@@ -5,9 +5,9 @@ import scala.language.implicitConversions
 
 /**
  * An enum representing all the types of amino acids which in a list make up a
- * protein. This includes [[AminoAcid.Gap]] for any gaps in the protein chain,
- * and [[AminoAcid.Stop]] + [[AminoAcid.Start]] indicating stops and starts
- * of a protein chain.
+ * protein. This includes [[utils.protein.AminoAcid.Gap AminoAcid.Gap]] for any gaps in the protein chain,
+ * and [[utils.protein.AminoAcid.Stop AminoAcid.Stop]] + [[utils.protein.AminoAcid.Start AminoAcid.Start]]
+ * indicating stops and starts of a protein chain.
  */
 enum AminoAcid {
 	override def toString: String = {
@@ -51,7 +51,7 @@ enum AminoAcid {
 }
 
 /**
- * Associated object for [[AminoAcid]] containing associated functions and overloaded
+ * Associated object for [[utils.protein.AminoAcid AminoAcid]] containing associated functions and overloaded
  * operators and conversions.
  */
 object AminoAcid {

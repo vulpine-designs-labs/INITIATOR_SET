@@ -5,7 +5,7 @@ import utils.mrna.MRNABases
 import scala.language.implicitConversions
 
 /**
- * The minimum value that will make a base dominant in [[KzNucleotide.NucleotideDict]].
+ * The minimum value that will make a base dominant in [[utils.kozak.KzNucleotide.NucleotideDict KzNucleotide.NucleotideDict]].
  */
 val DominantMin: Double = 0.4
 
@@ -61,7 +61,7 @@ class KzNucleotide (
 	/**
 	 * Returns a list of [[utils.mrna.MRNABases MRNABases]] along with the weights for them, filtered out
 	 * to only contain ones with weight surpassing the minimum dominant weight,
-	 * defined in [[DominantMin]].
+	 * defined in [[utils.kozak.DominantMin DominantMin]].
 	 *
 	 * @return The bases along with the weights of those bases.
 	 */
@@ -75,7 +75,7 @@ class KzNucleotide (
 	/**
 	 * Returns a list of [[utils.mrna.MRNABases MRNABases]] without the weights, filtered out
 	 * to only contain ones with weight surpassing the minimum dominant weight,
-	 * defined in [[DominantMin]].
+	 * defined in [[utils.kozak.DominantMin DominantMin]].
 	 *
 	 * @return The filtered bases.
 	 */
@@ -91,8 +91,7 @@ class KzNucleotide (
 	 * Returns the "confidence" of a given base at the current position.
 	 *
 	 * A base with a high weight at an important position means there is a greater "confidence"
-	 * that the base is within the desired sequence looking for by the kozak. See module
-	 * definition for [[kozak]] for definition on kozak sequences.
+	 * that the base is within the desired sequence looking for by the kozak.
 	 *
 	 * @param base The base that needs checking.
 	 * @return The "confidence" value.
@@ -109,7 +108,7 @@ class KzNucleotide (
 }
 
 /**
- * Associated object for [[KzNucleotide]], containing implicit type casts. 
+ * Associated object for [[utils.kozak.KzNucleotide KzNucleotide]], containing implicit type casts. 
  */
 object KzNucleotide {
 	implicit def toString(kozakNuc: KzNucleotide): String = {

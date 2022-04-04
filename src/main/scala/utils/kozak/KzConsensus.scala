@@ -8,21 +8,22 @@ import utils.mrna.{
 import scala.language.implicitConversions
 
 /**
- * This stores the list or sequence of [[KzNucleotide]], along with a few helper
+ * This stores the list or sequence of [[utils.kozak.KzNucleotide KzNucleotide]], along with a few helper
  * methods and data, allowing for a list of [[utils.mrna.MRNABases MRNABases]] to be compared against it to
  * determine if the desired sequence has been found.
  *
  * ==Example==
- * You can compare a list of [[utils.mrna.MRNABases MRNABases]] against the consensus by using [[KzConsensus.similarity]]
- * this returns a double denoting the "strength" of whether or not the sequence is
- * the desired one;
+ * You can compare a list of [[utils.mrna.MRNABases MRNABases]] against the consensus by using
+ * [[utils.kozak.KzConsensus.similarity() KzConsensus.similarity]] this returns a double denoting the
+ * "strength" of whether or not the sequence is the desired one;
  *
  * {{{
  *     val similarityScore = consensus.similarity(listOfBases)
  * }}}
  *
- * @param CodonStart The stating position of the 3 element long codon within [[KzConsensus.Sequence]].
- * @param Sequence A list of [[KzNucleotide]] holding information about each
+ * @param CodonStart The stating position of the 3 element long codon within
+ *                   [[utils.kozak.KzConsensus.Sequence KzConsensus.Sequence]].
+ * @param Sequence A list of [[utils.kozak.KzNucleotide KzNucleotide]] holding information about each
  * position within the sequence.
  */
 class KzConsensus(
@@ -30,21 +31,21 @@ class KzConsensus(
      val Sequence: List[KzNucleotide]
 ) {
 	/**
-	 * Used when comparing a similarity in (e.g. [[KzConsensus.similarity]]) as the minimum
-	 * threshold for if a comparison is similar or not.
+	 * Used when comparing a similarity in (e.g. [[utils.kozak.KzConsensus.similarity KzConsensus.similarity ]])
+	 * as the minimum threshold for if a comparison is similar or not.
 	 */
 	val SimilarityThreshold: Int = -1
 	
 	/**
-	 * Used for identifying conserved [[KzNucleotides]] (ones that rarely change) within
-	 * [[KzConsensus.Sequence]] based on [[KzNucleotide.Importance]].
+	 * Used for identifying conserved [[utils.kozak.KzNucleotide KzNucleotide]] (ones that rarely change) within
+	 * [[utils.kozak.KzConsensus KzConsensus.Sequence]] based on [[utils.kozak.KzNucleotide.Importance KzNucleotide.Importance]].
 	 */
 	val ConservedThreshold: Int = -1
 	
 	/**
-	 * Gets the positions specified as being the codon (defined by [[KzConsensus.CodonStart]]),
-	 * then returns the dominant base (the base with the highest score within [[KzNucleotide.NucleotideDict]])
-	 * for each position.
+	 * Gets the positions specified as being the codon (defined by [[utils.kozak.KzConsensus.CodonStart KzConsensus.CodonStart]]),
+	 * then returns the dominant base (the base with the highest score within
+	 * [[utils.kozak.KzNucleotide.NucleotideDict KzNucleotide.NucleotideDict]]) for each position.
 	 *
 	 * @return The list of dominant bases in the specified codon position.
 	 */
@@ -56,9 +57,10 @@ class KzConsensus(
 	}
 	
 	/**
-	 * Gets the positions specified as being the codon (defined by [[KzConsensus.CodonStart]]),
-	 * then returns the dominant base (the base with the highest score within [[KzNucleotide.NucleotideDict]])
-	 * for each position, and tries to index it via [[utils.mrna.mRNA.indexCodon mRNA.indexCodon]].
+	 * Gets the positions specified as being the codon (defined by [[utils.kozak.KzConsensus.CodonStart KzConsensus.CodonStart]]),
+	 * then returns the dominant base (the base with the highest score within
+	 * [[utils.kozak.KzNucleotide.NucleotideDict KzNucleotide.NucleotideDict]]) for each position, and tries
+	 * to index it via [[utils.mrna.indexCodon() indexCodon]].
 	 *
 	 * @return The list of dominant bases in the specified codon position.
 	 */
@@ -71,8 +73,9 @@ class KzConsensus(
 	}
 	
 	/**
-	 * Gets the highest weight for each of the [[KzConsensus.Sequence]] positions, defined in
-	 * [[KzNucleotide.NucleotideDict]] multiplied by [[KzNucleotide.Importance]], and sums them.
+	 * Gets the highest weight for each of the [[utils.kozak.KzConsensus.Sequence KzConsensus.Sequence]] positions, defined in
+	 * [[utils.kozak.KzNucleotide.NucleotideDict KzNucleotide.NucleotideDict]] multiplied by
+	 * [[utils.kozak.KzNucleotide.Importance KzNucleotide.Importance]], and sums them.
 	 *
 	 * @return The sum of all the weights * all the importances.
 	 */
@@ -86,7 +89,7 @@ class KzConsensus(
 	
 	/**
 	 * Takes a list of [[utils.mrna.MRNABases MRNABases]], and gets the weight for each of them in 
-	 * their position compared to [[KzConsensus.Sequence]] and returns them in a list, 
+	 * their position compared to [[utils.kozak.KzConsensus.Sequence KzConsensus.Sequence]] and returns them in a list,
 	 * a greater number of high weights suggests that the correct sequence has been found.
 	 *
 	 * @param comparisonSeq The list of bases to be compared.
@@ -108,7 +111,7 @@ class KzConsensus(
 	
 	/**
 	 * Takes a list of [[utils.mrna.MRNABases MRNABases]], and gets the weight for each of them in their position compared to
-	 * [[KzConsensus.Sequence]] and returns the sum of them all, a greater sum suggests that the
+	 * [[utils.kozak.KzConsensus.Sequence KzConsensus.Sequence]] and returns the sum of them all, a greater sum suggests that the
 	 * correct sequence has been found.
 	 *
 	 * @param comparisonSeq The list of bases to be compared.
@@ -120,8 +123,9 @@ class KzConsensus(
 	
 	/**
 	 * Takes a list of [[utils.mrna.MRNABases MRNABases]], and gets the weight for each of them in their position compared to
-	 * [[KzConsensus.Sequence]] and returns the sum of them all, a greater sum suggests that the
-	 * correct sequence has been found, will be 0 if below the value specified in [[KzConsensus.SimilarityThreshold]].
+	 * [[utils.kozak.KzConsensus.Sequence KzConsensus.Sequence]] and returns the sum of them all,
+	 * a greater sum suggests that the correct sequence has been found, will be 0 if below the value
+	 * specified in [[utils.kozak.KzConsensus.SimilarityThreshold KzConsensus.SimilarityThreshold]].
 	 *
 	 * @param comparisonSeq The list of bases to be compared.
 	 * @param comparisonStart The (optional) index to start checking comparisonSeq.
@@ -136,20 +140,20 @@ class KzConsensus(
 	
 	/**
 	 * Takes a list of [[utils.mrna.MRNABases MRNABases]], and gets the weight for each of them in their position compared to
-	 * [[KzConsensus.Sequence]] and returns true if the sum of them all is above [[KzConsensus.SimilarityThreshold]]
-	 * and false if below.
+	 * [[utils.kozak.KzConsensus.Sequence KzConsensus.Sequence]] and returns true if the sum of them all is above
+	 * [[utils.kozak.KzConsensus.SimilarityThreshold KzConsensus.SimilarityThreshold]] and false if below.
 	 *
 	 * @param comparisonSeq The list of bases to be compared.
 	 * @param comparisonStart The (optional) index where to start checking comparisonSeq.
 	 * @return Whether or not the som of the weights in the comparisonSeq is greater than
-	 * [[KzConsensus.SimilarityThreshold]].
+	 *         [[utils.kozak.KzConsensus.SimilarityThreshold KzConsensus.SimilarityThreshold]].
 	 */
 	def homologous(comparisonSeq: List[MRNABases], comparisonStart: Int = 0): Boolean =
 		similarity(comparisonSeq, comparisonStart) >= SimilarityThreshold
 }
 
 /**
- * Associated object for [[KzConsensus]], contains implicit type casts.
+ * Associated object for [[utils.kozak.KzConsensus KzConsensus]], contains implicit type casts.
  */
 object KzConsensus {
 	implicit def toString(kzConsensus: KzConsensus): String = {

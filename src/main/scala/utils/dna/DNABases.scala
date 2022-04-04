@@ -14,7 +14,7 @@ import scala.language.implicitConversions
  */
 enum DNABases {
 	/**
-	 * Converts an [[DNABases]] to a [[MRNABases]] based on a rule such that;
+	 * Converts an [[utils.dna.DNABases DNABases]] to a [[utils.mrna.MRNABases MRNABases]] based on a rule such that;
 	 *
 	 * DNABases.A -> MRNABases.U
 	 * DNABases.C -> MRNABases.G
@@ -44,7 +44,7 @@ enum DNABases {
 
 object DNABases {
 	/**
-	 * A function to iterate over a string of given bases and return an array of the [[DNABases]] type,
+	 * A function to iterate over a string of given bases and return an array of the [[utils.dna.DNABases DNABases]] type,
 	 * this removes potential unknowns when working with lists of bases.
 	 *
 	 * @param string A string of bases, all characters must be either 'A', 'C', 'G', or 'T'.
@@ -67,10 +67,10 @@ object DNABases {
 		}
 		
 		/**
-		 * Iterates over the bases and calls [[DNABases.toMRNA]] on each to get the corresponding
+		 * Iterates over the bases and calls [[utils.dna.DNABases.toMRNA DNABases.toMRNA]] on each to get the corresponding
 		 * mRNA base for each.
 		 *
-		 * @return The list of all the corresponding [[MRNABases]].
+		 * @return The list of all the corresponding [[utils.mrna.MRNABases MRNABases]].
 		 */
 		def toMRNA: List[MRNABases] =
 			bases.map(_.toMRNA)

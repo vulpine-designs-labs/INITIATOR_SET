@@ -12,8 +12,8 @@ import utils.mrna.{
  * doubles to be between 0 and 1 (where 1 is the largest value in the map).
  *
  * The integers represent a codon, this is an integer between 0 and 63, that is the
- * total possible combinations of 3 [[MRNABases]].
- * See [[indexCodon]] and [[deIndexCodon]].
+ * total possible combinations of 3 [[utils.mrna.MRNABases MRNABases]].
+ * See [[utils.mrna.indexCodon() indexCodon]] and [[utils.mrna.deIndexCodon() deIndexCodon]].
  *
  * @param baseWeights The input map of values.
  * @return The list of adjusted values.
