@@ -1,5 +1,5 @@
 
-name := "InitiatorSet"
+name := "initiator_set"
 
 version := "0.0.1"
 
@@ -10,7 +10,7 @@ val scalaTest = "org.scalatest" %% "scalatest" % "3.2.11"
 
 lazy val root = (project in file("."))
 	.settings(
-		name := "InitiatorSet",
+		name := "initiator_set",
 		idePackagePrefix := Some("org.vulpinedesigns.initiator_set"),
 		libraryDependencies += scalactic,
 		libraryDependencies += scalaTest % "test"
