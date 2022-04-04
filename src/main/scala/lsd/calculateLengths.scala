@@ -24,8 +24,8 @@ val DefaultStopCodons: List[Int] = List(
  * Loops over [[mRNA.Codons]], calculating the sequence lengths (via [[sequenceLengths]]) at each
  * index in the sequence.
  *
- * @param mrna `[[mRNA]]`: the [[mRNA]] with the sequence
- * @return `List[Int]`: the calculated lengths
+ * @param mrna The [[mRNA]] with the sequence.
+ * @return The calculated lengths.
  */
 def calculateLengths(mrna: mRNA): List[Int] = {
 	mrna.Codons.zipWithIndex map { (codon, index) =>
@@ -38,10 +38,10 @@ def calculateLengths(mrna: mRNA): List[Int] = {
  * `start`, returning the first index where a value is within [[stopCodons]], thus getting
  * the apparent length of the sequence.
  *
- * @param mrna `[[mRNA]]`: the mrna with the sequence to be checked
- * @param start ``: the index of the sequence to be checked from
- * @param stopCodons ``: a list of codons designated as stop codons, defaults to [[DefaultStopCodons]]
- * @return `Int`: the first position containing a stop codon
+ * @param mrna The mrna with the sequence to be checked.
+ * @param start The index of the sequence to be checked from.
+ * @param stopCodons A list of codons designated as stop codons, defaults to [[DefaultStopCodons]].
+ * @return The first position containing a stop codon.
  */
 def sequenceLengths(mrna: mRNA, start: Int, stopCodons: List[Int] = DefaultStopCodons): Int = {
 	val codons = mrna.Codons.slice(start, mrna.Codons.length)
@@ -53,11 +53,11 @@ def sequenceLengths(mrna: mRNA, start: Int, stopCodons: List[Int] = DefaultStopC
  * Determines whether from a list of sequence lengths (e.g. calculated by [[calculateLengths]])
  * 2 sequences with starting positions indicated by `one: Int` and `two: Two` overlap.
  *
- * @param sequence `List[Int]`: the list of sequence lengths
- * @param one `Int`: the starting position of the first sequence
- * @param two `Int`: the start position of the other sequence
- * @return `Option[Boolean]`: whether or not they overlap, returns `None` if the
- *         lowest starting position os out of bounds of `sequence`
+ * @param sequence The list of sequence lengths.
+ * @param one The starting position of the first sequence.
+ * @param two The start position of the other sequence.
+ * @return Whether or not they overlap, returns `None` if the lowest starting
+ *         position os out of bounds of `sequence`.
  */
 def doSequencesOverlap(sequence: List[Int], one: Int, two: Int): Option[Boolean] = {
 	val seqStarts = List(one, two)

@@ -16,8 +16,8 @@ import utils.fasta.{
  * Takes a string read from a fasta file, breaks and parses each sequence into a list of
  * [[Fasta]] sequences. `Option[Fasta]` will be `None` if the format is invalid.
  *
- * @param sequenceString `String`: the fasta string
- * @return `List[Option[Fasta]]`: the list of attempted tokenized sequences
+ * @param sequenceString The fasta string.
+ * @return The list of attempted tokenized sequences.
  */
 def readFastaSequences(sequenceString: String): List[Option[Fasta]] = {
 	val sequences = sequenceString.split('>').toList

@@ -15,8 +15,8 @@ import utils.mrna.{
  * total possible combinations of 3 [[MRNABases]].
  * See [[indexCodon]] and [[deIndexCodon]].
  *
- * @param baseWeights: `Map[Int, Double]` the input map of values.
- * @return `Map[Int, Double]`: the list of adjusted values.
+ * @param baseWeights The input map of values.
+ * @return The list of adjusted values.
  */
 def getAdjustedCodonWeights(baseWeights: Map[Int, Double]): Map[Int, Double] = {
 	val maxWeight = baseWeights.toList.maxBy((c, w) => w)._2

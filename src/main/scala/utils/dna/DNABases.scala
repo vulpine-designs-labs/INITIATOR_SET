@@ -24,7 +24,7 @@ enum DNABases {
 	 * This is a rule purely reflective of what happens to DNA to MRNA bases inside
 	 * a cell.
 	 *
-	 * @return [[MRNABases]]: the result of the conversion.
+	 * @return The result of the conversion.
 	 */
 	def toMRNA: MRNABases = {
 		val dnaBase = DNABases.fromOrdinal(ordinal)
@@ -47,8 +47,8 @@ object DNABases {
 	 * A function to iterate over a string of given bases and return an array of the [[DNABases]] type,
 	 * this removes potential unknowns when working with lists of bases.
 	 *
-	 * @param string: `String` a string of bases, all characters must be either 'A', 'C', 'G', or 'T'.
-	 * @return `Some(List[DNABases])` if all the characters are acceptable, `None` if any are out of range.
+	 * @param string A string of bases, all characters must be either 'A', 'C', 'G', or 'T'.
+	 * @return If all the characters are acceptable, `None` if any are out of range.
 	 */
 	def listFromString(string: String): Option[List[DNABases]] = {
 		val res = for ( char <- string ) yield {
@@ -70,7 +70,7 @@ object DNABases {
 		 * Iterates over the bases and calls [[DNABases.toMRNA]] on each to get the corresponding
 		 * mRNA base for each.
 		 *
-		 * @return `List[MRNABases]`: the list of all the corresponding [[MRNABases]]
+		 * @return The list of all the corresponding [[MRNABases]].
 		 */
 		def toMRNA: List[MRNABases] =
 			bases.map(_.toMRNA)

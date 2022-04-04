@@ -11,17 +11,14 @@ import utils.mrna.{
 }
 
 /**
- * Takes a [[mRNA.mRNA]] and list of [[kozak.KzConsensus]], it will then loop over [[mRNA.mRNA.Codons]],
- * finding a [[KzConsensus]] from the `kozaks` param with a matching [[kozak.KzConsensus.indexedCodon]], it will
- * then get the similarity score between the mrna and the selected [[kozak.KzConsensus]]. Storing & returning
- * the results and data into a list of [[kozak.KzContext]].
+ * Takes a [[mRNA]] and list of [[KzConsensus]], it will then loop over [[mRNA.Codons]],
+ * finding a [[KzConsensus]] from the `kozaks` param with a matching [[KzConsensus.indexedCodon]], it will
+ * then get the similarity score between the mrna and the selected [[KzConsensus]]. Storing & returning
+ * the results and data into a list of [[KzContext]].
  *
- * @param mrna: [[mRNA.mRNA]] the mrna to be checked.
- *
- * @param kozaks: `List[`[[kozak.KzConsensus]]`]` a list of Kozak Consensus Sequences to get
- * the similarity score.
- *
- * @return `List[`[[kozak.KzContext]]`]` a list containing the results of each similarity check.
+ * @param mrna The mrna to be checked.
+ * @param kozaks A list of Kozak Consensus Sequences to get the similarity score.
+ * @return A list containing the results of each similarity check.
  */
 def calculateKozaks(mrna: mRNA, kozaks: List[KzConsensus]): List[KzContext] = {
 	val kzStartCodons = kozaks map { kz =>

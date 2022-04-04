@@ -19,11 +19,11 @@ val DominantMin: Double = 0.4
  * This contains the "strength" or "weight" of each base at that position as well as the overall
  * importance of that position.
  *
- * @param aWeight: `Double` the weight of [[mRNA.Bases.A]] at this position.
- * @param uWeight: `Double` the weight of [[mRNA.Bases.U]] at this position.
- * @param gWeight: `Double` the weight of [[mRNA.Bases.G]] at this position.
- * @param cWeight: `Double` the weight of [[mRNA.Bases.C]] at this position.
- * @param Importance: `Int` the importance of this position.
+ * @param aWeight The weight of [[utils.mrna.MRNABases.A MRNABases.A]] at this position.
+ * @param uWeight The weight of [[utils.mrna.MRNABases.U MRNABases.U]] at this position.
+ * @param gWeight The weight of [[utils.mrna.MRNABases.G MRNABases.G]] at this position.
+ * @param cWeight The weight of [[utils.mrna.MRNABases.C MRNABases.C]] at this position.
+ * @param Importance The importance of this position.
  */
 class KzNucleotide (
    aWeight: Double,
@@ -40,18 +40,18 @@ class KzNucleotide (
 	)
 	
 	/**
-	 * A function to return a list of [[mRNA.Bases]] along with the weight of them (in a Tuple)
+	 * A function to return a list of [[utils.mrna.MRNABases MRNABases]] along with the weight of them (in a Tuple)
 	 * at the current position in descending order.
 	 *
-	 * @return `List[(Bases, Double)]` the bases along with the weights of those bases.
+	 * @return The bases along with the weights of those bases.
 	 */
 	def sortDescending: List[(MRNABases, Double)] =
 		NucleotideDict.toList.sortBy((base, value) => value).reverse
 	
 	/**
-	 * Returns a list of the [[mRNA.Bases]] with the highest weight, allowing for joint highest.
+	 * Returns a list of the [[utils.mrna.MRNABases MRNABases]] with the highest weight, allowing for joint highest.
 	 *
-	 * @return `List[(Bases, Double)]` the bases along with the weights of those bases.
+	 * @return The bases along with the weights of those bases.
 	 */
 	def maximumNucleotideDist: List[(MRNABases, Double)] = {
 		val (_base, topDist) = sortDescending.head
@@ -59,11 +59,11 @@ class KzNucleotide (
 	}
 	
 	/**
-	 * Returns a list of [[mRNA.Bases]] along with the weights for them, filtered out
+	 * Returns a list of [[utils.mrna.MRNABases MRNABases]] along with the weights for them, filtered out
 	 * to only contain ones with weight surpassing the minimum dominant weight,
 	 * defined in [[DominantMin]].
 	 *
-	 * @return `List[(Bases, Double)]` the bases along with the weights of those bases.
+	 * @return The bases along with the weights of those bases.
 	 */
 	def dominantNucleotideDist: List[(MRNABases, Double)] = {
 		val (_base, topDist) = sortDescending.head
@@ -73,11 +73,11 @@ class KzNucleotide (
 	}
 	
 	/**
-	 * Returns a list of [[mRNA.Bases]] without the weights, filtered out
+	 * Returns a list of [[utils.mrna.MRNABases MRNABases]] without the weights, filtered out
 	 * to only contain ones with weight surpassing the minimum dominant weight,
 	 * defined in [[DominantMin]].
 	 *
-	 * @return `List[Bases]` the filtered bases.
+	 * @return The filtered bases.
 	 */
 	def dominantNucleotides: List[MRNABases] = {
 		val (_base, topDist) = sortDescending.head
@@ -94,9 +94,8 @@ class KzNucleotide (
 	 * that the base is within the desired sequence looking for by the kozak. See module
 	 * definition for [[kozak]] for definition on kozak sequences.
 	 *
-	 * @param base: [[mRNA.Bases]] the base that needs checking.
-	 *
-	 * @return `Double` the "confidence" value.
+	 * @param base The base that needs checking.
+	 * @return The "confidence" value.
 	 */
 	def getConfidence(base: MRNABases): Double = {
 		val weight = NucleotideDict.getOrElse(base, 0.0)

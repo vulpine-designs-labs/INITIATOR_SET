@@ -9,11 +9,11 @@ import scala.language.implicitConversions
 
 /**
  * This stores the list or sequence of [[KzNucleotide]], along with a few helper
- * methods and data, allowing for a list of [[mRNA.Bases]] to be compared against it to
+ * methods and data, allowing for a list of [[utils.mrna.MRNABases MRNABases]] to be compared against it to
  * determine if the desired sequence has been found.
  *
  * ==Example==
- * You can compare a list of [[mRNA.Bases]] against the consensus by using [[KzConsensus.similarity]]
+ * You can compare a list of [[utils.mrna.MRNABases MRNABases]] against the consensus by using [[KzConsensus.similarity]]
  * this returns a double denoting the "strength" of whether or not the sequence is
  * the desired one;
  *
@@ -21,16 +21,24 @@ import scala.language.implicitConversions
  *     val similarityScore = consensus.similarity(listOfBases)
  * }}}
  *
- * @param CodonStart: `Int` the stating position of the 3 element long codon within [[KzConsensus.Sequence]].
- *
- * @param Sequence: `List[KzNucleotide]` a list of [[KzNucleotide]] holding information about each
+ * @param CodonStart The stating position of the 3 element long codon within [[KzConsensus.Sequence]].
+ * @param Sequence A list of [[KzNucleotide]] holding information about each
  * position within the sequence.
  */
 class KzConsensus(
      val CodonStart: Int,
      val Sequence: List[KzNucleotide]
 ) {
+	/**
+	 * Used when comparing a similarity in (e.g. [[KzConsensus.similarity]]) as the minimum
+	 * threshold for if a comparison is similar or not.
+	 */
 	val SimilarityThreshold: Int = -1
+	
+	/**
+	 * Used for identifying conserved [[KzNucleotides]] (ones that rarely change) within
+	 * [[KzConsensus.Sequence]] based on [[KzNucleotide.Importance]].
+	 */
 	val ConservedThreshold: Int = -1
 	
 	/**
@@ -38,7 +46,7 @@ class KzConsensus(
 	 * then returns the dominant base (the base with the highest score within [[KzNucleotide.NucleotideDict]])
 	 * for each position.
 	 *
-	 * @return `List[Bases]` the list of dominant bases in the specified codon position.
+	 * @return The list of dominant bases in the specified codon position.
 	 */
 	def codon: List[MRNABases] = {
 		val kzNucCodon = Sequence.slice(CodonStart, CodonStart + 3)
@@ -50,9 +58,9 @@ class KzConsensus(
 	/**
 	 * Gets the positions specified as being the codon (defined by [[KzConsensus.CodonStart]]),
 	 * then returns the dominant base (the base with the highest score within [[KzNucleotide.NucleotideDict]])
-	 * for each position, and tries to index it via [[mRNA.indexCodon]].
+	 * for each position, and tries to index it via [[utils.mrna.mRNA.indexCodon mRNA.indexCodon]].
 	 *
-	 * @return `List[Bases]` the list of dominant bases in the specified codon position.
+	 * @return The list of dominant bases in the specified codon position.
 	 */
 	def indexedCodon: Option[Int] = {
 		val kzNucCodon = Sequence.slice(CodonStart, CodonStart + 3)
@@ -66,7 +74,7 @@ class KzConsensus(
 	 * Gets the highest weight for each of the [[KzConsensus.Sequence]] positions, defined in
 	 * [[KzNucleotide.NucleotideDict]] multiplied by [[KzNucleotide.Importance]], and sums them.
 	 *
-	 * @return `Double` the sum of all the weights * all the importances.
+	 * @return The sum of all the weights * all the importances.
 	 */
 	def totalWeight: Double = {
 		val weights = Sequence map { nucleotide =>
@@ -77,15 +85,13 @@ class KzConsensus(
 	}
 	
 	/**
-	 * Takes a list of [[mRNA.Bases]], and gets the weight for each of them in their position compared to
-	 * [[KzConsensus.Sequence]] and returns them in a list, a greater number of high weights
-	 * suggests that the correct sequence has been found.
+	 * Takes a list of [[utils.mrna.MRNABases MRNABases]], and gets the weight for each of them in 
+	 * their position compared to [[KzConsensus.Sequence]] and returns them in a list, 
+	 * a greater number of high weights suggests that the correct sequence has been found.
 	 *
-	 * @param comparisonSeq: `List[Bases]` the list of bases to be compared.
-	 *
-	 * @param comparisonStart `Int` (optional) where to start checking comparisonSeq.
-	 *
-	 * @return `List[Double]` a list of weights corresponding the the comparisonSeq.
+	 * @param comparisonSeq The list of bases to be compared.
+	 * @param comparisonStart The (optional) index to start checking comparisonSeq.
+	 * @return A list of weights corresponding the the comparisonSeq.
 	 */
 	def similarityDistribution(comparisonSeq: List[MRNABases], comparisonStart: Int = 0): List[Double] = {
 		val comparisonLength = comparisonSeq.length - comparisonStart
@@ -101,29 +107,25 @@ class KzConsensus(
 	}
 	
 	/**
-	 * Takes a list of [[mRNA.Bases]], and gets the weight for each of them in their position compared to
+	 * Takes a list of [[utils.mrna.MRNABases MRNABases]], and gets the weight for each of them in their position compared to
 	 * [[KzConsensus.Sequence]] and returns the sum of them all, a greater sum suggests that the
 	 * correct sequence has been found.
 	 *
-	 * @param comparisonSeq: `List[Bases]` the list of bases to be compared.
-	 *
-	 * @param comparisonStart `Int` (optional) where to start checking comparisonSeq.
-	 *
-	 * @return `Double` the sum of all the weights in the comparisonSeq.
+	 * @param comparisonSeq The list of bases to be compared.
+	 * @param comparisonStart The (optional) index to start checking comparisonSeq.
+	 * @return The sum of all the weights in the comparisonSeq.
 	 */
 	def similarityTally(comparisonSeq: List[MRNABases], comparisonStart: Int = 0): Double =
 		similarityDistribution(comparisonSeq, comparisonStart).sum
 	
 	/**
-	 * Takes a list of [[mRNA.Bases]], and gets the weight for each of them in their position compared to
+	 * Takes a list of [[utils.mrna.MRNABases MRNABases]], and gets the weight for each of them in their position compared to
 	 * [[KzConsensus.Sequence]] and returns the sum of them all, a greater sum suggests that the
 	 * correct sequence has been found, will be 0 if below the value specified in [[KzConsensus.SimilarityThreshold]].
 	 *
-	 * @param comparisonSeq: `List[Bases]` the list of bases to be compared.
-	 *
-	 * @param comparisonStart `Int` (optional) where to start checking comparisonSeq.
-	 *
-	 * @return `Double` the sum of all the weights in the comparisonSeq.
+	 * @param comparisonSeq The list of bases to be compared.
+	 * @param comparisonStart The (optional) index to start checking comparisonSeq.
+	 * @return The sum of all the weights in the comparisonSeq.
 	 */
 	def similarity(comparisonSeq: List[MRNABases], comparisonStart: Int = 0): Double = {
 		val similarityDist = similarityDistribution(comparisonSeq, comparisonStart)
@@ -133,15 +135,13 @@ class KzConsensus(
 	}
 	
 	/**
-	 * Takes a list of [[mRNA.Bases]], and gets the weight for each of them in their position compared to
+	 * Takes a list of [[utils.mrna.MRNABases MRNABases]], and gets the weight for each of them in their position compared to
 	 * [[KzConsensus.Sequence]] and returns true if the sum of them all is above [[KzConsensus.SimilarityThreshold]]
 	 * and false if below.
 	 *
-	 * @param comparisonSeq: `List[Bases]` the list of bases to be compared.
-	 *
-	 * @param comparisonStart `Int` (optional) where to start checking comparisonSeq.
-	 *
-	 * @return `Boolean` whether or not the som of the weights in the comparisonSeq is greater than
+	 * @param comparisonSeq The list of bases to be compared.
+	 * @param comparisonStart The (optional) index where to start checking comparisonSeq.
+	 * @return Whether or not the som of the weights in the comparisonSeq is greater than
 	 * [[KzConsensus.SimilarityThreshold]].
 	 */
 	def homologous(comparisonSeq: List[MRNABases], comparisonStart: Int = 0): Boolean =

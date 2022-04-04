@@ -12,11 +12,10 @@ import utils.mrna.mRNA
  * A result of 0 means the [[KzContext]] has a been compared such that it matches and nothing
  * has been returned from the penalties.
  *
- * @param mrna `[[mRNA]]`: the mRNA containing the weights [[mRNA.BaseWeights]] to be adjusted
- * @param penalties `List[Int => Double]`: a list of functions that can apply a penalty based on
- *                  KzContext.ContextStart]
- * @return `Option[List[Double]]`: the "leakiness" score for each position, returns `None` if
- *         there is fewer [[mRNA.AdjustedWeights]] than [[mRNA.KzContexts]]
+ * @param mrna The mRNA containing the weights [[mRNA.BaseWeights]] to be adjusted.
+ * @param penalties A list of functions that can apply a penalty based on [[KzContext.ContextStart]].
+ * @return The "leakiness" score for each position, returns `None` if there is fewer
+ *         [[mRNA.AdjustedWeights]] than [[mRNA.KzContexts]].
  */
 def calculateLeakyChronological(mrna: mRNA, penalties: List[Int => Double]): Option[List[Double]] = {
 	val kzContexts = mrna.KzContexts

@@ -17,11 +17,11 @@ import ProteinMap.{
  * Takes a list of [[MRNABases]] and converts it to a list of [[AminoAcid]] (a protein)
  * as per `ProteinMappings` parameter, this can be overridden.
  *
- * @param mrnaBases `List[MRNABases]`: the list of mRNA bases to be converted
- * @param mapping `ProteinMapping`: the [[ProteinMapping]] object defining what mRNA bases convert to
- *                what AminoAcids
- * @return `Option[List[AminoAcid]]`: the converted amino acids, returns `None` if
- *         the bases cannot be converted to their codons, or a related mapping cannot be found
+ * @param mrnaBases The list of mRNA bases to be converted.
+ * @param mapping The [[ProteinMapping]] object defining what mRNA bases convert to
+ *                what AminoAcids.
+ * @return The converted amino acids, returns `None` if the bases cannot be converted to 
+ *         their codons, or a related mapping cannot be found.
  */
 def mRNAListToProtein(
 	mrnaBases: List[MRNABases],

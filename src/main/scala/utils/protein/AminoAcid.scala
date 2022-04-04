@@ -59,8 +59,8 @@ object AminoAcid {
 	 * Takes a string, loops through each character and returns the equivalent amino acid
 	 * in a list, returning a `None` if there is no match.
 	 *
-	 * @param string `String`: the string to be converted.
-	 * @return `Option[List[AminoAcid]`: the result of the attempted conversion.
+	 * @param string The string to be converted.
+	 * @return The result of the attempted conversion.
 	 */
 	def listFromString(string: String): Option[List[AminoAcid]] = {
 		val res = for ( char <- string ) yield {

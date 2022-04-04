@@ -18,9 +18,8 @@ import utils.mrna.{
  * Will become:
  * `Map(12 -> 12.3)`
  *
- * @param input the input string to be parsed
- *
- * @return `Option[Map[Int, Double]]`
+ * @param input The input string to be parsed.
+ * @return The tokenized codon values + weights.
  */
 def extractCodonWeights(input: String): Option[Map[Int, Double]] = {
 	val inputLines = splitFilterLines(input)
