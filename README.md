@@ -9,7 +9,7 @@ This is the core library containing all the relevant functionality for INITIATOR
 
 See the API [documentation](https://www.vulpinedesigns.com/INITIATOR_SET).
 
-###To add to your project:
+### To add to your project:
 [![Maven Central](https://img.shields.io/maven-central/v/org.vulpinedesigns.initiator_set/initiator_set_3.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22org.vulpinedesigns.initiator_set%22%20AND%20a:%22initiator_set_3%22)
 
 #### Apache Maven
