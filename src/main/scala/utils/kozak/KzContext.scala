@@ -27,6 +27,12 @@ class KzContext(
  * Associated object for [[utils.kozak.KzContext KzContext]], containing implicit type castings.
  */
 object KzContext {
+	/**
+	 * Overrided method for converting a Kozak context to a standard string representation.
+	 *
+	 * @param context The Kozak context.
+	 * @return The standard string representation.
+	 */
 	implicit def toString(context: KzContext): String = {
 		val consensus: String = context.Consensus
 		s"${context.ContextStart}..${context.ContextEnd}=${context.Strength} ($consensus)"

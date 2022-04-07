@@ -32,6 +32,7 @@ case class DNASeq(seq: List[DNABases]) extends  FastaSequence
  */
 case class ProteinSeq(seq: List[AminoAcid]) extends FastaSequence
 
+
 /**
  * A class representing a tokenized fasta file, containing the tokenized sequence, the ID and the raw
  * string sequence. 

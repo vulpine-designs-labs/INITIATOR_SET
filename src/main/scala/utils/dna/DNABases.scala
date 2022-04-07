@@ -37,12 +37,20 @@ enum DNABases {
 		}
 	}
 	
+	/** A = adenine */
 	case A extends DNABases
+	/** U = uracil */
 	case C extends DNABases
+	/** G = guanine */
 	case G extends DNABases
+	/** C = cytosine */
 	case T extends DNABases
 }
 
+
+/**
+ * Associated object for [[utils.dna.DNABases DNABases]] containing overrided methods and type casts.
+ */
 object DNABases {
 	/**
 	 * A function to iterate over a string of given bases and return an array of the [[utils.dna.DNABases DNABases]] type,
@@ -63,6 +71,11 @@ object DNABases {
 	}
 	
 	extension (bases: List[DNABases]) {
+		/**
+		 * Extension method for converting a list of DNA bases into a standard string representation,
+		 *
+		 * @return The string representation.
+		 */
 		implicit def toString: String = {
 			bases.flatMap(_.toString).mkString
 		}

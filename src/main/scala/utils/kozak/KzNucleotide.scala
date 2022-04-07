@@ -5,11 +5,6 @@ import utils.mrna.MRNABases
 import scala.language.implicitConversions
 
 /**
- * The minimum value that will make a base dominant in [[utils.kozak.KzNucleotide.NucleotideDict KzNucleotide.NucleotideDict]].
- */
-val DominantMin: Double = 0.4
-
-/**
  * This represents a position within the Kozak sequence.
  *
  * Different positions within a kozak sequence can have greater bearing on the "strength"
@@ -61,28 +56,28 @@ class KzNucleotide (
 	/**
 	 * Returns a list of [[utils.mrna.MRNABases MRNABases]] along with the weights for them, filtered out
 	 * to only contain ones with weight surpassing the minimum dominant weight,
-	 * defined in [[utils.kozak.DominantMin DominantMin]].
+	 * defined in [[utils.kozak.KzNucleotide.DominantMin KzNucleotide.DominantMin]].
 	 *
 	 * @return The bases along with the weights of those bases.
 	 */
 	def dominantNucleotideDist: List[(MRNABases, Double)] = {
 		val (_base, topDist) = sortDescending.head
 		NucleotideDict.toList.filter((base, value) =>
-			value == topDist || value > DominantMin
+			value == topDist || value > KzNucleotide.DominantMin
 		)
 	}
 	
 	/**
 	 * Returns a list of [[utils.mrna.MRNABases MRNABases]] without the weights, filtered out
 	 * to only contain ones with weight surpassing the minimum dominant weight,
-	 * defined in [[utils.kozak.DominantMin DominantMin]].
+	 * defined in [[utils.kozak.KzNucleotide.DominantMin KzNucleotide.DominantMin]].
 	 *
 	 * @return The filtered bases.
 	 */
 	def dominantNucleotides: List[MRNABases] = {
 		val (_base, topDist) = sortDescending.head
 		val filteredDist: List[(MRNABases, Double)] = NucleotideDict.toList.filter((base, value) =>
-			value == topDist || value > DominantMin
+			value == topDist || value > KzNucleotide.DominantMin
 		)
 		filteredDist.map((base, value) => base)
 	}
@@ -111,6 +106,17 @@ class KzNucleotide (
  * Associated object for [[utils.kozak.KzNucleotide KzNucleotide]], containing implicit type casts. 
  */
 object KzNucleotide {
+	/**
+	 * The minimum value that will make a base dominant in [[utils.kozak.KzNucleotide.NucleotideDict KzNucleotide.NucleotideDict]].
+	 */
+	val DominantMin: Double = 0.4
+	
+	/**
+	 * Overrided method for converting a Kozak nucleotide to a standard string representation.
+	 *
+	 * @param kozakNuc The Kozak nucleotide.
+	 * @return The standard string representation.
+	 */
 	implicit def toString(kozakNuc: KzNucleotide): String = {
 		val dominants = kozakNuc.dominantNucleotideDist
 		if(dominants.length <= 0) {

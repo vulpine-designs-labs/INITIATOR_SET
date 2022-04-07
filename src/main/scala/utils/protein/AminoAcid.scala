@@ -11,6 +11,11 @@ import scala.language.implicitConversions
  * indicating stops and starts of a protein chain.
  */
 enum AminoAcid {
+	/**
+	 * Overrided method for converting an amino acid to a standard string representation.
+	 *
+	 * @return The string representation.
+	 */
 	override def toString: String = {
 		val value = AminoAcid.fromOrdinal(ordinal)
 		value match {
@@ -75,6 +80,14 @@ object AminoAcid {
 	}
 	
 	extension (list: List[AminoAcid]) {
+		
+		/**
+		 * An extension method that will iterate over a list of AminoAcids and convert them to
+		 * a string based on [[utils.protein.AminoAcid.toString AminoAcid.toString]], this can be reversed by
+		 * feeding the output into [[utils.protein.AminoAcid.listFromString() AminoAcid.listFromString]].
+		 *
+		 * @return The output string.
+		 */
 		implicit def toString: String = {
 			list.flatMap(_.toString).mkString
 		}

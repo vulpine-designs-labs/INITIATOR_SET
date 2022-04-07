@@ -2,6 +2,7 @@ package org.vulpinedesigns.initiator_set
 package fasta
 
 import utils.protein.AminoAcid
+import scala.language.implicitConversions
 
 
 /**
@@ -76,14 +77,15 @@ class ProteinMap(
 	}
 }
 
+
 /**
  * Associated object for [[ProteinMap]] containing extension methods.
  */
 object ProteinMap {
 	extension (list: List[ProteinMap]) {
 		/**
-		 * Takes the list of `ProteinMap` returns a list of [[utils.protein.AminoAcid AminoAcid]] getting the start alt
-		 * amino acids for the start and appending the defaults for the rest,
+		 * Takes the list of `ProteinMap` returns a list of [[utils.protein.AminoAcid AminoAcid]] 
+		 * getting the start alt amino acids for the start and appending the defaults for the rest,
 		 * getting the start amino acid.
 		 *
 		 * @return The start amino acid chain (protein).
@@ -119,6 +121,7 @@ object ProteinMap {
 	}
 }
 
+
 /**
  * A top level class containing a list of [[ProteinMap]] and access methods to allow to
  * quickly search for map objects for given mRNA codon values (a codon being a number
@@ -129,18 +132,19 @@ object ProteinMap {
  */
 class ProteinMappings(mappings: List[ProteinMap] = List()) {
 	/**
-	 * A list of map objects associating each codon values with a list of [[utils.protein.AminoAcid AminoAcid]] (a protein).
-	 * Defaults to [[DefaultMappings]].
+	 * A list of map objects associating each codon values with a list of 
+	 * [[utils.protein.AminoAcid AminoAcid]] (a protein).
+	 * Defaults to [[ProteinMappings.DefaultMappings]].
 	 */
 	val Mappings: List[ProteinMap] =
-		if(mappings.isEmpty) DefaultMappings
+		if(mappings.isEmpty) ProteinMappings.DefaultMappings
 		else mappings
 	
 	/**
 	 * Tries to find a [[ProteinMap]] that contains a given codon.
 	 *
 	 * @param codon The codon to search for.
-	 * @return The related [[ProteinMap]], returns None` if no map is found for the codon.
+	 * @return The related [[ProteinMap]], returns `None` if no map is found for the codon.
 	 */
 	def getAminoAcidFromCodon(codon: Int): Option[ProteinMap] =
 		Mappings.find(_.hasCodon(codon))
@@ -164,29 +168,35 @@ class ProteinMappings(mappings: List[ProteinMap] = List()) {
 }
 
 /**
- * The default mappings for converting between [[utils.mrna.MRNABases MRNABases]] and [[utils.protein.AminoAcid AminoAcid]].
+ * Associated object for [[fasta.ProteinMappings ProteinMappings]] containing associated functions
+ * and type casts.
  */
-val DefaultMappings: List[ProteinMap] = List(
-	ProteinMap(List(45, 47, 44, 46), List(AminoAcid.A)),
-	ProteinMap(List(25, 27), List(AminoAcid.C)),
-	ProteinMap(List(33, 35), List(AminoAcid.D)),
-	ProteinMap(List(32, 34), List(AminoAcid.E)),
-	ProteinMap(List(21, 23), List(AminoAcid.F)),
-	ProteinMap(List(41, 43, 40, 42), List(AminoAcid.G)),
-	ProteinMap(List(49, 51), List(AminoAcid.H)),
-	ProteinMap(List(5, 7, 4), List(AminoAcid.I)),
-	ProteinMap(List(0, 2), List(AminoAcid.K)),
-	ProteinMap(List(20, 22, 53, 55, 52, 54), List(AminoAcid.L)),
-	ProteinMap(List(1, 3), List(AminoAcid.N)),
-	ProteinMap(List(61, 63, 60, 62), List(AminoAcid.P)),
-	ProteinMap(List(48, 50), List(AminoAcid.Q)),
-	ProteinMap(List(57, 59, 56, 58, 8, 10), List(AminoAcid.R)),
-	ProteinMap(List(29, 31, 28, 30, 9, 11), List(AminoAcid.S)),
-	ProteinMap(List(13, 15, 12, 14), List(AminoAcid.T)),
-	ProteinMap(List(37, 39, 36, 38), List(AminoAcid.V)),
-	ProteinMap(List(26), List(AminoAcid.W)),
-	ProteinMap(List(17, 19), List(AminoAcid.Y)),
-	ProteinMap(List(6), List(AminoAcid.M), Start(List(AminoAcid.Start, AminoAcid.M))),
-	ProteinMap(List(16, 18, 24), List(), End(List(AminoAcid.Stop)))
-)
-
+object ProteinMappings {
+	/**
+	 * The default mappings for converting between [[utils.mrna.MRNABases MRNABases]] and 
+	 * [[utils.protein.AminoAcid AminoAcid]].
+	 */
+	val DefaultMappings: List[ProteinMap] = List(
+		ProteinMap(List(45, 47, 44, 46), List(AminoAcid.A)),
+		ProteinMap(List(25, 27), List(AminoAcid.C)),
+		ProteinMap(List(33, 35), List(AminoAcid.D)),
+		ProteinMap(List(32, 34), List(AminoAcid.E)),
+		ProteinMap(List(21, 23), List(AminoAcid.F)),
+		ProteinMap(List(41, 43, 40, 42), List(AminoAcid.G)),
+		ProteinMap(List(49, 51), List(AminoAcid.H)),
+		ProteinMap(List(5, 7, 4), List(AminoAcid.I)),
+		ProteinMap(List(0, 2), List(AminoAcid.K)),
+		ProteinMap(List(20, 22, 53, 55, 52, 54), List(AminoAcid.L)),
+		ProteinMap(List(1, 3), List(AminoAcid.N)),
+		ProteinMap(List(61, 63, 60, 62), List(AminoAcid.P)),
+		ProteinMap(List(48, 50), List(AminoAcid.Q)),
+		ProteinMap(List(57, 59, 56, 58, 8, 10), List(AminoAcid.R)),
+		ProteinMap(List(29, 31, 28, 30, 9, 11), List(AminoAcid.S)),
+		ProteinMap(List(13, 15, 12, 14), List(AminoAcid.T)),
+		ProteinMap(List(37, 39, 36, 38), List(AminoAcid.V)),
+		ProteinMap(List(26), List(AminoAcid.W)),
+		ProteinMap(List(17, 19), List(AminoAcid.Y)),
+		ProteinMap(List(6), List(AminoAcid.M), Start(List(AminoAcid.Start, AminoAcid.M))),
+		ProteinMap(List(16, 18, 24), List(), End(List(AminoAcid.Stop)))
+	)
+}

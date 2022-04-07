@@ -1,10 +1,7 @@
 package org.vulpinedesigns.initiator_set
 package utils.kozak
 
-import utils.mrna.{
-	MRNABases, 
-	indexCodon
-}
+import utils.mrna.MRNABases
 import scala.language.implicitConversions
 
 
@@ -61,7 +58,7 @@ class KzConsensus(
 	 * Gets the positions specified as being the codon (defined by [[utils.kozak.KzConsensus.CodonStart KzConsensus.CodonStart]]),
 	 * then returns the dominant base (the base with the highest score within
 	 * [[utils.kozak.KzNucleotide.NucleotideDict KzNucleotide.NucleotideDict]]) for each position, and tries
-	 * to index it via [[utils.mrna.indexCodon() indexCodon]].
+	 * to index it via [[utils.mrna.MRNABases.indexCodon() MRNABases.indexCodon]].
 	 *
 	 * @return The list of dominant bases in the specified codon position.
 	 */
@@ -70,7 +67,7 @@ class KzConsensus(
 		val unIndexedCodon = kzNucCodon map { nucleotide =>
 			nucleotide.dominantNucleotideDist.head._1
 		}
-		indexCodon(unIndexedCodon)
+		MRNABases.indexCodon(unIndexedCodon)
 	}
 	
 	/**
@@ -78,7 +75,7 @@ class KzConsensus(
 	 * [[utils.kozak.KzNucleotide.NucleotideDict KzNucleotide.NucleotideDict]] multiplied by
 	 * [[utils.kozak.KzNucleotide.Importance KzNucleotide.Importance]], and sums them.
 	 *
-	 * @return The sum of all the weights * all the importances.
+	 * @return The sum of all the weights * all the importance.
 	 */
 	def totalWeight: Double = {
 		val weights = Sequence map { nucleotide =>
@@ -153,10 +150,18 @@ class KzConsensus(
 		similarity(comparisonSeq, comparisonStart) >= SimilarityThreshold
 }
 
+
 /**
  * Associated object for [[utils.kozak.KzConsensus KzConsensus]], contains implicit type casts.
  */
 object KzConsensus {
+	
+	/**
+	 * Overrided method for converting a Kozak consensus to a standard string representation.
+	 *
+	 * @param kzConsensus The Kozak consensus.
+	 * @return The standard string representation. 
+	 */
 	implicit def toString(kzConsensus: KzConsensus): String = {
 		val nucleotidesStrings = kzConsensus.Sequence map { nucleotide =>
 			val nucString: String = nucleotide
