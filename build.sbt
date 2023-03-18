@@ -11,7 +11,8 @@ lazy val mainProject = crossProject(JSPlatform, JVMPlatform).in(file("."))
 	.settings(
 		name := "initiator_set",
 		idePackagePrefix := Some("org.vulpinedesigns.initiator_set"),
-		scalaVersion := "3.1.3"
+		scalaVersion := "3.1.3",
+		version := "0.0.3"
 	)
 	.jvmSettings(
 		libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.15",
