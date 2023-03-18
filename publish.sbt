@@ -20,7 +20,7 @@ ThisBuild / developers := List(
 
 ThisBuild / description := "mRNA to protein translation variables calculator."
 ThisBuild / licenses := List("GPL-2.0-only" -> new URL("https://opensource.org/licenses/gpl-2.0.php"))
-ThisBuild / homepage := Some(url("https://www.vulpinedesigns.com/INITIATOR_SET"))
+ThisBuild / homepage := Some(url("https://vulpine-designs-labs.github.io/INITIATOR_SET"))
 
 // Remove all additional repository other than Maven Central from POM
 ThisBuild / pomIncludeRepository := { _ => false }
