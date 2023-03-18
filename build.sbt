@@ -1,17 +1,23 @@
 
 name := "initiator_set"
 
-version := "0.0.2"
+version := "0.0.3"
 
-scalaVersion := "3.0.2"
+lazy val root = project.in(file("."))
+	.aggregate(mainProject.js, mainProject.jvm)
 
-val scalactic = "org.scalactic" %% "scalactic" % "3.2.11"
-val scalaTest = "org.scalatest" %% "scalatest" % "3.2.11"
 
-lazy val root = (project in file("."))
+lazy val mainProject = crossProject(JSPlatform, JVMPlatform).in(file("."))
 	.settings(
 		name := "initiator_set",
 		idePackagePrefix := Some("org.vulpinedesigns.initiator_set"),
-		libraryDependencies += scalactic,
-		libraryDependencies += scalaTest % "test"
+		scalaVersion := "3.1.3"
+	)
+	.jvmSettings(
+		libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.15",
+		libraryDependencies +="org.scalatest" %% "scalatest" % "3.2.15" % "test",
+	)
+	.jsSettings(
+		libraryDependencies += "org.scalactic" %%% "scalactic" % "3.2.15",
+		libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.15" % "test"
 	)
