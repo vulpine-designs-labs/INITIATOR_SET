@@ -83,11 +83,14 @@ object MRNABases {
 	 */
 	def indexCodon(codon: List[MRNABases]): Option[Int] = {
 		if (codon.length != 3) return None
-		val res: Int  = codon.reverse.zipWithIndex.map { (base, index) =>
-			val multiplier = Math.pow(4, index).toInt
-			base.ordinal * multiplier
-		}.sum
+		val res: Int  = codon.reverse.zipWithIndex.map(getValue).sum
 		Some(res)
+	}
+	
+	private def getValue(base: MRNABases, index: Int): Int = {
+		val multiplier = Math.pow(4, index).toInt
+		val res = base.ordinal * multiplier
+		res
 	}
 	
 	/**
