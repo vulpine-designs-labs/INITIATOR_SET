@@ -53,7 +53,7 @@ object map_aic {
 	
 	private def splitFilterLines(input: String): List[String] = {
 		val res = input.split('\n')
-			.filter(_.length <= 3)
+			.filter(_.length > 3)
 			.flatMap { line =>
 				val s = line.split('#').head.filter(_ != ' ')
 				if(s.isEmpty) None
@@ -102,4 +102,12 @@ object map_aic {
 		}
 		Some(res)
 	}
+}
+
+object Main extends App {
+	val x = map_aic.extractCodonWeights("AUG 12.3")
+		.getOrElse(Map())
+		.toList
+		.head._2
+	println(s"${x}")
 }

@@ -5,19 +5,19 @@ _(a recursive acronym)_
 
 This is a General Cellular Module of [The GUESS](https://vulpipedia.vulpinedesigns.com/index.php?n=ProjectGeneticiser.TheGUESS).
 
-This is the core library containing all the relevant functionality for INITIATOR_SET.
+This is the core library containing all the relevant functionality for INITIATOR_SET, written in Scala 3.
 
 See the API [documentation](https://vulpine-designs-labs.github.io/INITIATOR_SET).
 
 ### To add to your project:
-[![Maven Central](https://img.shields.io/maven-central/v/org.vulpinedesigns.initiator_set/initiator_set_3.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22org.vulpinedesigns.initiator_set%22%20AND%20a:%22initiator_set_3%22)
+[![Maven Central](https://img.shields.io/maven-central/v/org.vulpinedesigns.initiator_set/initiator_set_3.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/org.vulpinedesigns.initiator_set/initiator_set_3/0.0.3)
 
 #### Apache Maven
 ```xml
 <dependency>
   <groupId>org.vulpinedesigns.initiator_set</groupId>
   <artifactId>initiator_set_3</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
 </dependency>
 ```
 
@@ -33,7 +33,12 @@ implementation("org.vulpinedesigns.initiator_set:initiator_set_3:0.0.3")
 
 #### Scala SBT
 ```sbt
-libraryDependencies += "org.vulpinedesigns.initiator_set" % "initiator_set_3" % "0.0.3"
+libraryDependencies += "org.vulpinedesigns.initiator_set" %% "initiator_set" % "0.0.3"
+```
+
+#### ScalaJS SBT
+```sbt
+libraryDependencies += "org.vulpinedesigns.initiator_set" %%% "initiator_set" % "0.0.3"
 ```
 
 #### Apache Ivy
